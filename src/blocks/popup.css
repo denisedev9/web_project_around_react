@@ -1,0 +1,221 @@
+/* Popup general */
+.popup {
+    position: fixed;
+    /* se queda sobre toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* activa Flexbox */
+    justify-content: center;
+    /* centra horizontalmente */
+    align-items: center;
+    /* centra verticalmente */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* fondo semi-transparente */
+    z-index: 1000;
+}
+
+/* PREGUNTA: COMO PONER UN CONTAINER EN POPUP.. EN EL CÓDIGO?*/
+.popup__content {
+margin: auto;
+border-radius: 10px;
+    gap: 5px;
+}
+
+.popup__title {
+    color: #ffffff;
+    font-family: "Inter-Black", sans-serif;
+    font-size: 26px;
+    width: 330px;
+    margin: 0 36px;
+    padding: 20px;
+}
+
+.popup__form {
+    margin: auto;
+    /* un margen horizontal decente */
+    padding: 20px;
+    /* padding interno para que no toque los bordes */
+    font-family: "Inter-Black", sans-serif;
+    font-size: 24px;
+    border-bottom: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    /* apila los inputs y botones verticalmente */
+    gap: 15px;
+    /* espacio entre cada input y botón */
+    box-sizing: border-box;
+    /* importante para que padding no rompa el ancho */
+    /* ocupa todo el ancho disponible */
+    max-width: 400px;
+    /* opcional: limita el tamaño máximo del form */
+}
+
+.popup__input {
+    font-size: 12px ;
+    border-bottom: 1px solid #000;
+        padding: 10px;
+        font-size: 18px;
+        box-sizing: border-box;
+
+}
+
+
+.popup__button{
+    font-size: 12px;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+.popup__content-image {
+    max-width: fit-content;
+    margin: auto;
+}
+
+.popup__image {
+    max-width: 50vw;
+    /* mitad del ancho de la ventana */
+    max-height: 50vh;
+    /* mitad del alto de la ventana */
+    display: block;
+    margin: 0 auto;
+    /* centra horizontal */
+    object-fit: contain;
+    border-radius: 10px;
+    /* mantiene proporción */
+}
+
+.popup__input {
+    border: 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000;
+}
+
+
+.popup__paragraph-content {
+    margin: auto;
+    width: 400px;
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 12px;
+    color: #fff;
+}
+
+.popup__button_add {
+    width: 100%;
+    background-color: #000;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.popup__button_disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.popup__error_visible {
+    color: #f00;
+    margin-top: -22px;
+    margin-bottom: 15px;
+}
+
+.popup__input_type_error {
+    border-bottom: 2px solid #ff4d4f;
+}
+
+.popup__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 360px;
+    margin: auto;
+    border: 0;
+    padding: 0;
+}
+
+.popup__image {
+    max-width: 50vw;
+    max-height: 50vh;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+}
+
+.popup__close {
+    position: absolute;
+    top: 115px;
+    right: 170px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+.popup__close img {
+    width: 100%;
+    height: 100%;
+}
+
+.popup__close:hover {
+    opacity: 0.6;
+}
+
+
+
+.popup__image{
+    max-width: 70%;
+    max-height: 70%;
+}
+
+
+.submit__button_disabled{
+    opacity: 0.5;
+}
+
+
+/* .popup{
+    display:flex; 
+    position: fixed; 
+    justify-content: center;
+    align-items: center;
+    background-color: 0 0 0 0.5;
+}
+
+/* .popup__opened{
+    display:flex;
+    position: fixed;
+    box-sizing: border-box;
+    background-color: 0 0 0 0.5;
+}
+
+.popup__closed{
+background: url(images/icon/close-button.svg) no-repeat transparent center; 
+width: ;                     ?
+height: ;
+border: none; 
+position: absolute;
+top: ; 
+right: ; 
+}
+
+
+.popup__closed:hover {
+opacity: 0.8; 
+}
+
+.popup__submit:disabled{
+opacity 
+
+//reset formularios 
+
+/* */
+
+
+
+
+

@@ -1,0 +1,53 @@
+import { useState } from "react";
+import heart from "../../images/heart.svg";
+import heartblack from "../../images/heartblack.svg";
+import trash from "../../images/trash.svg";
+
+export default function Card({ card, handleOpenPopup, handleClosePopup }) {
+  const { name, link, isLiked } = card;
+  const [liked, setLiked] = useState(isLiked);
+
+  function handleLike() {
+    setLiked((prev) => !prev);
+  }
+
+  function handleImageClick() {
+    handleOpenPopup({
+      title: "", // vacío porque es solo la imagen
+      children: <img src={link} alt={name} className="popup__image" />,
+      onClose: handleClosePopup, // ✅ muy importante para cerrar
+    });
+  }
+
+  return (
+    <li className="card">
+      <img
+        className="card__image"
+        src={link}
+        alt={name}
+        onClick={handleImageClick}
+      />
+
+      <button
+        aria-label="Delete card"
+        className="card__delete-button"
+        type="button"
+      >
+        <img src={trash} alt="delete" />
+      </button>
+
+      <div className="card__description">
+        <h2 className="card__title">{name}</h2>
+
+        <button
+          aria-label="Like card"
+          type="button"
+          className="card__like-button"
+          onClick={handleLike}
+        >
+          <img src={liked ? heartblack : heart} alt="like" />
+        </button>
+      </div>
+    </li>
+  );
+}

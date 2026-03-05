@@ -28,6 +28,7 @@ https://denisehanono.github.io/web_project_around_react
 
 Sprint 14
 Web Project Around
-Denise Hanono
+Denise
 2026
+
 # web_project_around_react

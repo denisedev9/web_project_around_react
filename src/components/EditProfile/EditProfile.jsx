@@ -1,10 +1,21 @@
-export default function EditProfile() {
+import { useState } from "react";
+export default function EditProfile({ onUpdateProfile }){
+ 
+  const [name, setName] = useState("");
+  const [about, setAbout] = useState("");
+  
+  function handleSubmit(e) {
+  e.preventDefault();
+  onUpdateProfile(name, about);
+}
+  
   return (
     <form
       className="popup__form"
       name="profile-form"
       id="profile-form"
       noValidate
+      onSubmit={handleSubmit}
     >
       <label className="popup__field">
         <input
@@ -16,6 +27,8 @@ export default function EditProfile() {
           placeholder="Name"
           required
           type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <span className="popup__error" id="profile-name-error"></span>
       </label>
@@ -30,6 +43,8 @@ export default function EditProfile() {
           placeholder="About me"
           required
           type="text"
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
         />
         <span className="popup__error" id="profile-about-error"></span>
       </label>

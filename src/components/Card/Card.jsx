@@ -3,7 +3,7 @@ import heart from "../../images/heart.svg";
 import heartblack from "../../images/heartblack.svg";
 import trash from "../../images/trash.svg";
 
-export default function Card({ card, handleOpenPopup, handleClosePopup }) {
+export default function Card({ card, handleOpenPopup, handleClosePopup, onDeleteCard }) {
   const { name, link, isLiked } = card;
   const [liked, setLiked] = useState(isLiked);
 
@@ -11,6 +11,9 @@ export default function Card({ card, handleOpenPopup, handleClosePopup }) {
     setLiked((prev) => !prev);
   }
 
+function handleDeleteClick() {
+  onDeleteCard(card._id);
+}
   function handleImageClick() {
     handleOpenPopup({
       title: "", // vacío porque es solo la imagen
@@ -32,6 +35,7 @@ export default function Card({ card, handleOpenPopup, handleClosePopup }) {
         aria-label="Delete card"
         className="card__delete-button"
         type="button"
+         onClick={handleDeleteClick}
       >
         <img src={trash} alt="delete" />
       </button>

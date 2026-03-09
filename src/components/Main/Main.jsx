@@ -14,18 +14,19 @@ function Main() {
   const [popup, setPopup] = useState(null);
     const editProfilePopup = {
     title: "Editar Perfil",
-    children: <EditProfile />,
+    children: <EditProfile onUpdateProfile={handleUpdateProfile} />,
   };
 
   const editAvatarPopup = {
     title: "Cambiar Foto de Perfil",
-    children: <EditAvatar />,
+    children: <EditAvatar onUpdateAvatar={handleUpdateAvatar} />,
   };
-  const newCardPopup = { 
-    title: "Nuevo lugar", 
-    children: <NewCard /> };
+ const newCardPopup = { 
+  title: "Nuevo lugar", 
+  children: <NewCard onAddCard={handleAddCard} />
+};
     
-  const cards = [
+ const [cards, setCards] = useState([
   {
     isLiked: false,
     _id: "5d1f0611d321eb4bdcd707dd",
@@ -41,36 +42,63 @@ function Main() {
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
     owner: "5d1f0611d321eb4bdcd707dd",
     createdAt: "2019-07-05T08:11:58.324Z",
-  },
-  
-];
+  }, 
+]);
+
+const [profileName, setProfileName] = useState("Jacques Cousteau");
+const [profileAbout, setProfileAbout] = useState("Explorador");
+const [avatar, setAvatar] = useState(profileImage);
 
 console.log(cards);
 
 
-  function handleOpenPopup(popup) {
-    setPopup(popup)
-    console.log(popup);
+   function handleOpenPopup(popup) {
+  setPopup(popup);
 
-    function handleOpenPopup(popupData) {
-  setPopup(popupData);
-}
     
   }
   function handleClosePopup() {
     setPopup(null);
   }
+
+  function handleUpdateProfile(name, about) {
+  setProfileName(name);
+  setProfileAbout(about);
+  handleClosePopup();
+}
+
+function handleUpdateAvatar(link) {
+  setAvatar(link);
+  handleClosePopup();
+}
+
+function handleAddCard(name, link) {
+  const newCard = {
+    _id: Date.now(),
+    name: name,
+    link: link,
+    isLiked: false
+  };
+
+  setCards((prevCards) => [newCard, ...prevCards]);
+  handleClosePopup();
+}
+
+function handleDeleteCard(cardId) {
+  setCards((prevCards) => prevCards.filter((card) => card._id !== cardId));
+}
+
     return (  
 <main className="main">
   <section className="profile">
     <div className="profile__image_edit"  
         onClick={() => handleOpenPopup(editAvatarPopup)} >
       <img className="profile__image"
-      src={profileImage} 
+      src={avatar}
       alt="profile"/>  </div>
     <div className="profile__border-box">
       <div className="profile__container">
-        <h1 className="profile__name"> Jacques Cousteau </h1>
+       <h1 className="profile__name">{profileName}</h1>
           <button
         className="edit__button"
         onClick={() => handleOpenPopup(editProfilePopup)}
@@ -78,7 +106,7 @@ console.log(cards);
     <img src={pencil} alt="edit" />
   </button>
 
-      </div> <p className="profile__about"> Explorador </p>
+      </div> <p className="profile__about">{profileAbout}</p>
     </div>
 
      <button
@@ -95,6 +123,7 @@ console.log(cards);
     <Card key={card._id} card={card} 
      handleOpenPopup={handleOpenPopup} 
     handleClosePopup={handleClosePopup}
+    onDeleteCard={handleDeleteCard}
     />
   ))}
 </ul>

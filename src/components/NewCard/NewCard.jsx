@@ -1,15 +1,15 @@
 import { useState } from "react";
-export default function NewCard({ onAddCard }) {
+export default function NewCard({ onAddPlaceSubmit }) {
  
  const [name, setName] = useState("");
 const [link, setLink] = useState("");
 
 function handleSubmit(e) {
   e.preventDefault();
-  onAddCard(name, link);
-  setName("");
-  setLink("");
-}
+    onAddPlaceSubmit(name, link);
+    setName("");
+    setLink("");
+  }
 
   return (
     <form

@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import heart from "../../images/heart.svg";
 import heartblack from "../../images/heartblack.svg";
 import trash from "../../images/trash.svg";
 
-export default function Card({ card, handleOpenPopup, handleClosePopup, onDeleteCard }) {
-  const { name, link, isLiked } = card;
-  const [liked, setLiked] = useState(isLiked);
 
-  function handleLike() {
-    setLiked((prev) => !prev);
+export default function Card({ card, handleOpenPopup, handleClosePopup, onCardDelete, onCardLike }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const { name, link, isLiked } = card;
+  const cardLikeButtonClassName = `card__like-button ${
+    isLiked ? 'card__like-button_is-active' : ''
+  }`;
+
+  function handleLikeClick() {
+    onCardLike(card);
   }
 
 function handleDeleteClick() {
-  onDeleteCard(card._id);
+  onCardDelete(card);
 }
+
   function handleImageClick() {
     handleOpenPopup({
       title: "", // vacío porque es solo la imagen
@@ -21,6 +27,8 @@ function handleDeleteClick() {
       onClose: handleClosePopup, // ✅ muy importante para cerrar
     });
   }
+
+  
 
   return (
     <li className="card">
@@ -35,7 +43,7 @@ function handleDeleteClick() {
         aria-label="Delete card"
         className="card__delete-button"
         type="button"
-         onClick={handleDeleteClick}
+        onClick={handleDeleteClick}
       >
         <img src={trash} alt="delete" />
       </button>
@@ -46,10 +54,10 @@ function handleDeleteClick() {
         <button
           aria-label="Like card"
           type="button"
-          className="card__like-button"
-          onClick={handleLike}
+          className={cardLikeButtonClassName} 
+          onClick={handleLikeClick}
         >
-          <img src={liked ? heartblack : heart} alt="like" />
+         <img src={isLiked ? heartblack : heart} alt="like" />
         </button>
       </div>
     </li>

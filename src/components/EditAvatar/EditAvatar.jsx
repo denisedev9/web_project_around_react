@@ -1,10 +1,12 @@
-import { useState } from "react";
-export default function EditAvatar({ onUpdateAvatar }) {
-  const [link, setLink] = useState("");
+import { useRef, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+export default function EditAvatar() {
+  const avatarRef = useRef();
+  const { handleUpdateAvatar } = useContext(CurrentUserContext);
 
   function handleSubmit(e) {
   e.preventDefault();
-  onUpdateAvatar(link);
+  handleUpdateAvatar({ avatar: avatarRef.current.value });
 }
 
   return (
@@ -23,8 +25,7 @@ export default function EditAvatar({ onUpdateAvatar }) {
           placeholder="Avatar link"
           required
           type="url"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+          ref={avatarRef}
         />
         <span className="popup__error" id="avatar-link-error"></span>
       </label>
